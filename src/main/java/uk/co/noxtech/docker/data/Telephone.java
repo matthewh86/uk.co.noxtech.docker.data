@@ -1,10 +1,13 @@
 package uk.co.noxtech.docker.data;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.i18n.phonenumbers.CountryCodeToRegionCodeMap;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
+import java.io.IOException;
 import java.util.UUID;
 
 public final class Telephone {
@@ -41,6 +44,14 @@ public final class Telephone {
 
     @Override
     public String toString() {
-        return getE164Number();
+        return "id: " + id+ " E.164: " + getE164Number();
+    }
+
+    public String toJsonString() throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(this);
+    }
+
+    public static Telephone parseJsonAsTelephone(String json) throws IOException {
+        return new ObjectMapper().readValue(json, Telephone.class);
     }
 }

@@ -1,4 +1,5 @@
 dependencies {
     compile group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '5.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.6.3'
 }
 
